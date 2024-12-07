@@ -10,6 +10,7 @@ import { auth } from "../utils/firebase";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
+import { IMG } from "../utils/const";
 
 const Login = () => {
   const [isSignin, setIsSignin] = useState(true);
@@ -42,9 +43,16 @@ const Login = () => {
               "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGrzkUP2rJ3U8o2fSlxLE7mDpny3xTBzwkLA&s",
           })
             .then(() => {
-                const { uid, email, displayname, photoURL } = auth.currentUser;
-                dispatch(addUser({ uid: uid, email: email, displayname: displayname, photoURL : photoURL }));
-                navigate("/browse");
+              const { uid, email, displayname, photoURL } = auth.currentUser;
+              dispatch(
+                addUser({
+                  uid: uid,
+                  email: email,
+                  displayname: displayname,
+                  photoURL: photoURL,
+                })
+              );
+              navigate("/browse");
             })
             .catch((error) => {
               setErrorMessage(message);
@@ -83,7 +91,7 @@ const Login = () => {
       <Header />
       <div className="absolute">
         <img
-          src="https://assets.nflxext.com/ffe/siteui/vlv3/81d64f3c-9627-4741-8f74-422bf35f9f1d/web/IN-en-20241104-TRIFECTA-perspective_55263ea2-af7f-40ed-9cf0-7029a9b9baf4_medium.jpg"
+          src={IMG}
           alt="bg-img"
         ></img>
       </div>
